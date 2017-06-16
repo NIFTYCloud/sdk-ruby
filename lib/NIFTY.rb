@@ -57,7 +57,7 @@ module NIFTY
   #  urlencodeが真の場合はURLエンコードを行い、偽の場合はエンコードしない
   #
   def NIFTY.encode(secret_key, str, key_type, urlencode=true)
-    digest = OpenSSL::Digest::Digest.new(key_type)
+    digest = OpenSSL::Digest.new(key_type)
     b64_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, secret_key, str)).strip
 
     if urlencode
