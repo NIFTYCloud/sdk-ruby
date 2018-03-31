@@ -22,7 +22,7 @@ ncs4r = NIFTY::Cloud::Base.new(:access_key => ACCESS_KEY, :secret_key => SECRET_
 options = {
   #:user_id        => "userId",
   #:group_name     => "group01",
-  #:ip_permissions => [{:ip_protocl  => "ipProtocol", 
+  #:ip_permissions => [{:ip_protocol  => "ipProtocol",
   #                     :from_port   => 0, 
   #                     :to_port     => 0, 
   #                     :in_out      => "inOut",

@@ -21,7 +21,8 @@ ncs4r = NIFTY::Cloud::Base.new(:access_key => ACCESS_KEY, :secret_key => SECRET_
 
 options = {
   #:group_name         => "groupName",
-  #:group_description  => "groupDescription"
+  #:group_description  => "groupDescription",
+  #:availability_zone  => "availability_zone"
 }
 
 pp response = ncs4r.create_security_group(options)
