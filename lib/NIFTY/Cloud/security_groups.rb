@@ -67,7 +67,8 @@ module NIFTY
                                        :in_out       => 'InOut', 
                                        :user_id => 'Groups', 
                                        :group_name => 'Groups', 
-                                       :cidr_ip => 'IpRanges'}, 
+                                       :cidr_ip => 'IpRanges',
+                                       :description => 'Description'},
                                        { :user_id => 'UserId', 
                                          :group_name => 'GroupName', 
                                          :cidr_ip => 'CidrIp'}))
