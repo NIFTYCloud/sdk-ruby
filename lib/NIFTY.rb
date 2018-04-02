@@ -80,7 +80,7 @@ module NIFTY
     SIGNATURE_VERSION           = ["0", "1", "2"]
 
     attr_reader :access_key, :secret_key, :use_ssl, :server, :path, :proxy_server, :port, :connection_timeout, :socket_timeout,
-      :user_agent, :max_retry, :signature_version, :signature_method
+      :user_agent, :max_retry, :signature_version, :signature_method, :row_xml
 
     # オプションを指定してニフティクラウドAPIクライアントを生成します。
     #
@@ -370,7 +370,7 @@ module NIFTY
 
       LOG.debug('[ACTION]' + params['Action'])
       http_response = exec_request(make_request(params))
-
+      @row_xml = http_response.body
       return Response.parse(:xml => http_response.body) unless response_error?(http_response)
     end
 
