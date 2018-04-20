@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 #--
 # ニフティクラウドSDK for Ruby
 #
@@ -24,7 +25,7 @@ options = {
   #:min_count                => 0,
   #:max_count                => 0,
   #:key_name                 => "keyName",
-  #:security_group           => ["groupName"],
+  #:security_group           => "groupName",
   #:additional_info          => "additionalInfo",
   #:user_data                => "userData",
   #:addressing_type          => "addressingType",
@@ -47,7 +48,14 @@ options = {
   #:instance_id              => "instanceId",
   #:admin                    => "admin",
   #:password                 => "password",
-  #:ip_type                  => "static"
+  #:ip_type                  => "static",
+  #:network_interface        => [{
+  #                                :network_id                 => "net-COMMON_GLOBAL",
+  #                              },
+  #                              {
+  #                                :network_name               => "pvlan01",
+  #                                :ip_address                 => "static"
+  #                              }]
 }
 
 pp response = ncs4r.run_instances(options)
@@ -100,5 +108,23 @@ response.instancesSet.item.each do |instance|
     p instance.spotInstanceRequestId
     p instance.accountingType
     p instance.ipType
+  end
+  if network_interface_set = instance.networkInterfaceSet
+    network_interface_set.item.each do |network_interface|
+      p network_interface.networkInterfaceId
+      p network_interface.subnetId
+      p network_interface.vpcId
+      p network_interface.description
+      p network_interface.ownerId
+      p network_interface.niftyNetworkId
+      p network_interface.niftyNetworkName
+      p network_interface.status
+      p network_interface.macAddress
+      p network_interface.privateDnsName
+      p network_interface.sourceDestCheck
+      p network_interface.groupSet
+      p network_interface.attachment
+      p network_interface.association
+    end
   end
 end

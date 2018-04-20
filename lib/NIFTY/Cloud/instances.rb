@@ -1,3 +1,4 @@
+# coding: utf-8
 module NIFTY
   module Cloud
     class Base < NIFTY::Base
@@ -167,6 +168,7 @@ module NIFTY
       #   許可値: static | dynamic | none
       #  @option options [Boolean] :agreement                 Red Hat Enterprise Linux 5.8 64bit / 6.3 64bit を指定した場合の同意
       #   許可値: true (同意する) | false (同意しない)
+      #  @option options [Array<Hash>] :network_interface     ネットワーク・インタフェース
       #  @return [Hash] レスポンスXML解析結果
       #
       #  @example
@@ -205,8 +207,9 @@ module NIFTY
                                      :ebs_no_device => 'Ebs.NoDevice' })) unless blank?(options[:block_device_mapping])
         params.merge!(opts_to_prms(options, [:image_id, :min_count, :max_count, :key_name, :additional_info, :user_data, :addressing_type,
                                         :instance_type, :kernel_id, :ramdisk_id, :subnet_id, :disable_api_termination, :instance_initiated_shutdown_behavior,
-                                        :accounting_type, :instance_id, :admin, :password, :ip_type, :agreement]))
+                                        :accounting_type, :instance_id, :admin, :password, :ip_type, :agreement, :description]))
         params.merge!(opts_to_prms(options, [:availability_zone, :group_name], 'Placement'))
+        params.merge!(pathhashlist('NetworkInterface', options[:network_interface], {:network_id => 'NetworkId', :network_name => 'NetworkName', :ip_address => 'IpAddress'}))
 
         params.reject! {|k, v| INSTANCES_IGNORED_PARAMS =~ k } if @@ignore_amz_params
 
